@@ -79,7 +79,7 @@ Returns:
   "total_topics": 5,
   "phases_coverage": {"learn": 5, "practice": 3, "review": 2, "master": 1},
   "average_mastery": 4.2,
-  "recent_topics": [...]
+  "recent_topics": ["example"]
 }
 ```
 

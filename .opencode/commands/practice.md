@@ -1,6 +1,5 @@
 ---
 description: Generate a coding exercise for a topic at beginner, intermediate, or advanced difficulty
-subtask: true
 ---
 The user wants a coding exercise about $ARGUMENTS.
 

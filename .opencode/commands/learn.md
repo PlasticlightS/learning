@@ -1,6 +1,5 @@
 ---
 description: Learn a topic through the full Learn → Practice → Review → Master cycle
-subtask: true
 ---
 The user wants to learn about $ARGUMENTS.
 

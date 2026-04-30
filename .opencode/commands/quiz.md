@@ -1,6 +1,5 @@
 ---
 description: Test knowledge retention on a topic via multiple choice, spot-the-flaw, or tradeoff questions
-subtask: true
 ---
 The user wants to test their knowledge of $ARGUMENTS.
 

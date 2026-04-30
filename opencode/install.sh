@@ -29,7 +29,7 @@ echo "Linking commands..."
 
 for cmd in learn practice quiz; do
   target="$COMMANDS_DIR/$cmd.md"
-  source="$REPO_DIR/opencode/commands/$cmd.md"
+  source="$REPO_DIR/.opencode/commands/$cmd.md"
   if [[ -L "$target" ]]; then
     rm "$target"
   elif [[ -f "$target" ]]; then
@@ -46,7 +46,7 @@ if [[ -f "$CONFIG_TARGET" ]]; then
   echo "  Warning: $CONFIG_TARGET already exists. Merging skill permissions..."
   python3 -c "
 import json
-src = json.load(open('$REPO_DIR/opencode/opencode.json'))
+src = json.load(open('$REPO_DIR/.opencode/opencode.json'))
 try:
   dst = json.load(open('$CONFIG_TARGET'))
 except (FileNotFoundError, json.JSONDecodeError):
@@ -58,7 +58,7 @@ json.dump(dst, open('$CONFIG_TARGET', 'w'), indent=2)
 print('  Merged skill permissions into', '$CONFIG_TARGET')
 "
 else
-  cp "$REPO_DIR/opencode/opencode.json" "$CONFIG_TARGET"
+  cp "$REPO_DIR/.opencode/opencode.json" "$CONFIG_TARGET"
   echo "  opencode.json → $CONFIG_TARGET"
 fi
 

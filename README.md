@@ -25,10 +25,10 @@ This installs all six skills to your agent. Works with any [supported agent](htt
 
 ### OpenCode-specific setup (commands + permissions)
 
-The `opencode/` directory contains slash commands and agent config for OpenCode users:
+The `.opencode/` directory contains slash commands and agent config for OpenCode users:
 
 ```bash
-./opencode/install.sh
+./.opencode/install.sh
 ```
 
 This symlinks the commands (`/learn`, `/practice`, `/quiz`) and merges skill permissions into your OpenCode config.

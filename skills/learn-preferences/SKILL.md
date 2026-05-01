@@ -1,3 +1,8 @@
+---
+name: learn-preferences
+description: Manage user profiles so every learn-* skill can tailor its output to the right person. Acts as the single source of truth for stack, skill level, and focus.
+---
+
 # Skill: learn-preferences
 
 ## My Role

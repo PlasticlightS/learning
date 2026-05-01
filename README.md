@@ -44,36 +44,35 @@ What framework/language are you most focused on? [laravel, react, vue, go, pytho
 What's your proficiency level? [beginner / intermediate / advanced]
 ```
 
-You can also set these manually at any time:
+You can also ask your agent to update preferences at any time:
 
-```bash
-node ~/.config/opencode/skills/learn-preferences/scripts/prefs.cjs --set focus laravel
-node ~/.config/opencode/skills/learn-preferences/scripts/prefs.cjs --set level intermediate
-node ~/.config/opencode/skills/learn-preferences/scripts/prefs.cjs --set stack backend
 ```
-
-Check your current settings:
-
-```bash
-node ~/.config/opencode/skills/learn-preferences/scripts/prefs.cjs --get
+Set my focus to Laravel and level to intermediate.
+Show my current preferences.
 ```
 
 ### 2. Start a learning session
 
+Ask your agent in natural language:
+
+```
+Teach me service container binding.
+```
+
+The orchestrator handles the full cycle — tutoring, a practice exercise, code review, and a quiz.
+
+When using OpenCode, you can also use the `/learn` slash command:
+
 ```
 /learn service-container
 ```
-
-Or ask your agent directly: "Teach me service container binding."
-
-The orchestrator handles the full cycle — tutoring, a practice exercise, code review, and a quiz.
 
 ### 3. One-off sessions with a different stack
 
 Want to learn React state management but your default is Laravel? Just say so:
 
 ```
-/learn react-state-management
+Teach me React state management.
 ```
 
 The orchestrator detects the different focus, uses it as a temporary flag for the session, and records the topic as `focus=react` without changing your default. Nothing to configure.
@@ -86,16 +85,12 @@ Teach me goroutines as an advanced Go developer.
 
 ### 4. Track your progress
 
-Check everything you've covered:
+Ask your agent about your progress:
 
-```bash
-node ~/.config/opencode/skills/learn-progress-tracker/scripts/progress.cjs --list
 ```
-
-Get an overview with focus/level breakdowns:
-
-```bash
-node ~/.config/opencode/skills/learn-progress-tracker/scripts/progress.cjs --summary
+What have I covered?
+Show my learning stats.
+How am I doing on service-container?
 ```
 
 Progress is stored at `~/.config/opencode/learning-progress.json`.
@@ -122,16 +117,16 @@ Let me practice middleware
 
 ### Check what's left
 
-```bash
-node ~/.config/opencode/skills/learn-progress-tracker/scripts/progress.cjs --get service-container
+```
+What's left on service-container?
 ```
 
 Shows which phases are done, your quiz scores, difficulty reached, and the focus/level the topic was studied at.
 
 ### Restart a topic
 
-```bash
-node ~/.config/opencode/skills/learn-progress-tracker/scripts/progress.cjs --reset service-container
+```
+Reset my progress on service-container
 ```
 
 The orchestrator will warn before calling `--reset`.
@@ -144,4 +139,4 @@ LEARN ──→ PRACTICE ──→ REVIEW ──→ MASTER
   └─ tutor   └─ practice  └─ review   └─ exam
 ```
 
-Start with `/learn <topic>` or ask your agent to explain a concept.
+Start by asking your agent to explain a concept. If you use OpenCode, you can also use `/learn <topic>`.

@@ -26,6 +26,18 @@ function slugify(text) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
+function parseFlags(args) {
+  const flags = {};
+  for (let i = 0; i < args.length; i++) {
+    if (args[i].startsWith('--flag=')) {
+      const eq = args[i].indexOf('=');
+      const parts = args[i].slice(eq + 1).split('=', 2);
+      if (parts.length === 2) flags[parts[0]] = parts[1];
+    }
+  }
+  return flags;
+}
+
 function cmdList(data) {
   const summaries = Object.entries(data.topics)
     .map(([topic, rec]) => ({
@@ -37,6 +49,8 @@ function cmdList(data) {
       quiz_scores: rec.quiz_scores.length > 0
         ? rec.quiz_scores.map(s => `${s.score} (${s.format})`).join(', ')
         : 'none',
+      focus: rec.focus || null,
+      level: rec.level || null,
     }));
   console.log(JSON.stringify(summaries, null, 2));
 }
@@ -46,7 +60,7 @@ function cmdGet(data, topic) {
   console.log(JSON.stringify(rec, null, 2));
 }
 
-function cmdAdd(data, topic, phase, metadata) {
+function cmdAdd(data, topic, phase, metadata, flags) {
   const slug = slugify(topic);
   if (!data.topics[slug]) {
     data.topics[slug] = {
@@ -56,10 +70,19 @@ function cmdAdd(data, topic, phase, metadata) {
       phases_completed: [],
       max_difficulty_reached: null,
       quiz_scores: [],
+      focus: flags.focus || null,
+      level: flags.level || null,
     };
   } else {
     data.topics[slug].last_session = new Date().toISOString().split('T')[0];
     data.topics[slug].sessions++;
+
+    if (flags.focus && data.topics[slug].focus !== flags.focus) {
+      data.topics[slug].focus = flags.focus;
+    }
+    if (flags.level && data.topics[slug].level !== flags.level) {
+      data.topics[slug].level = flags.level;
+    }
   }
 
   const rec = data.topics[slug];
@@ -73,7 +96,6 @@ function cmdAdd(data, topic, phase, metadata) {
     if (!rec.phases_completed.includes('review')) rec.phases_completed.push('review');
   } else if (phase === 'master') {
     if (!rec.phases_completed.includes('master')) rec.phases_completed.push('master');
-    // metadata expected: "<score>" "<format>" e.g. "4/5" "multiple-choice"
     if (metadata) {
       const parts = metadata.trim().split(/\s+/);
       const score = parts[0] || metadata;
@@ -120,13 +142,29 @@ function cmdSummary(data) {
       topic,
       last_session: rec.last_session,
       phases: rec.phases_completed,
+      focus: rec.focus,
+      level: rec.level,
     }));
+
+  const focusBreakdown = {};
+  for (const t of topics) {
+    const f = t.focus || 'unknown';
+    focusBreakdown[f] = (focusBreakdown[f] || 0) + 1;
+  }
+
+  const levelBreakdown = {};
+  for (const t of topics) {
+    const l = t.level || 'unknown';
+    levelBreakdown[l] = (levelBreakdown[l] || 0) + 1;
+  }
 
   console.log(JSON.stringify({
     total_topics,
     phases_coverage,
     average_mastery,
     recent_topics,
+    focus_breakdown: focusBreakdown,
+    level_breakdown: levelBreakdown,
   }, null, 2));
 }
 
@@ -139,17 +177,18 @@ function cmdReset(data, topic) {
 function main() {
   const args = process.argv.slice(2);
   const data = load();
+  const flags = parseFlags(args);
 
   if (args.includes('--list')) return cmdList(data);
   if (args.includes('--get') && args[args.indexOf('--get') + 1])
     return cmdGet(data, args[args.indexOf('--get') + 1]);
   if (args.includes('--add') && args[args.indexOf('--add') + 1] && args[args.indexOf('--add') + 2])
-    return cmdAdd(data, args[args.indexOf('--add') + 1], args[args.indexOf('--add') + 2], args[args.indexOf('--add') + 3] || null);
+    return cmdAdd(data, args[args.indexOf('--add') + 1], args[args.indexOf('--add') + 2], args[args.indexOf('--add') + 3] || null, flags);
   if (args.includes('--summary')) return cmdSummary(data);
   if (args.includes('--reset') && args[args.indexOf('--reset') + 1])
     return cmdReset(data, args[args.indexOf('--reset') + 1]);
 
-  console.log('Usage: progress.cjs [--list | --get <topic> | --add <topic> <phase> [metadata] | --summary | --reset <topic>]');
+  console.log('Usage: progress.cjs [--list | --get <topic> | --add <topic> <phase> [metadata] [--flag=focus=laravel] [--flag=level=intermediate] | --summary | --reset <topic>]');
 }
 
 main();

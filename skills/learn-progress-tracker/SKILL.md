@@ -41,8 +41,8 @@ node scripts/progress.cjs --list
 Returns array of topic summaries:
 ```json
 [
-  {"topic": "service-container-binding", "sessions": 3, "last_session": "2026-04-29", "phases_completed": ["learn", "practice", "review"]},
-  {"topic": "queue-job-batching", "sessions": 1, "last_session": "2026-04-28", "phases_completed": ["learn"]}
+  {"topic": "service-container-binding", "sessions": 3, "last_session": "2026-04-29", "phases_completed": ["learn", "practice", "review"], "focus": "laravel", "level": "intermediate"},
+  {"topic": "queue-job-batching", "sessions": 1, "last_session": "2026-04-28", "phases_completed": ["learn"], "focus": "laravel", "level": "intermediate"}
 ]
 ```
 
@@ -59,11 +59,13 @@ Returns full topic record or `null` if not found.
 ### Add Progress
 
 ```bash
-node scripts/progress.cjs --add "<topic>" "<phase>" [metadata]
+node scripts/progress.cjs --add "<topic>" "<phase>" [metadata] [--flag=focus=laravel] [--flag=level=intermediate]
 ```
 
 - `phase`: learn, practice, review, master
 - `metadata`: optional string (difficulty for practice, "3/5" for master score)
+- `--flag=focus=<value>`: tag the session with the user's current focus (from learn-preferences)
+- `--flag=level=<value>`: tag the session with the user's current level
 
 Returns `{"ok": true, "topic": "..."}` on success.
 
@@ -79,7 +81,9 @@ Returns:
   "total_topics": 5,
   "phases_coverage": {"learn": 5, "practice": 3, "review": 2, "master": 1},
   "average_mastery": 4.2,
-  "recent_topics": ["example"]
+  "recent_topics": [{"topic": "...", "last_session": "...", "phases": ["..."], "focus": "...", "level": "..."}],
+  "focus_breakdown": {"laravel": 4, "react": 1},
+  "level_breakdown": {"intermediate": 3, "advanced": 2}
 }
 ```
 
@@ -107,7 +111,9 @@ Structure:
       "max_difficulty_reached": "intermediate",
       "quiz_scores": [
         {"format": "multiple-choice", "score": "4/5", "date": "2026-04-29"}
-      ]
+      ],
+      "focus": "laravel",
+      "level": "intermediate"
     }
   }
 }
@@ -115,10 +121,20 @@ Structure:
 
 Topics are slugified (lowercase, hyphens). The script handles this automatically.
 
+## Integration with learn-preferences
+
+When recording progress, pass the user's current preferences as flags so each topic record is tagged:
+
+```bash
+node scripts/progress.cjs --add "service-container" learn --flag=focus=laravel --flag=level=intermediate
+```
+
+This enables the summary to show focus/level breakdowns across all topics.
+
 ## When to Use Me
 
 - User asks "What have I covered?" → run `--list`
 - User asks "How am I doing on X?" → run `--get X`
-- User finishes a learning phase → orchestrator calls `--add` automatically
-- User asks "Show my stats" → run `--summary`
+- User finishes a learning phase → orchestrator calls `--add` automatically with `--flag=` tags
+- User asks "Show my stats" → run `--summary` (now includes focus_breakdown and level_breakdown)
 - User wants to restart a topic → run `--reset` (confirm first)

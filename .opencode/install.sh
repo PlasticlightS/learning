@@ -12,7 +12,7 @@ mkdir -p "$SKILLS_DIR" "$COMMANDS_DIR"
 echo ""
 echo "Linking skills..."
 
-for skill in learn-tutor learn-practice learn-review learn-exam learn-orchestrator learn-progress-tracker; do
+for skill in learn-preferences learn-tutor learn-practice learn-review learn-exam learn-orchestrator learn-progress-tracker; do
   target="$SKILLS_DIR/$skill"
   source="$REPO_DIR/skills/$skill"
   if [[ -L "$target" ]]; then

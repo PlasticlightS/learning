@@ -1,5 +1,5 @@
 ---
-description: Generate a coding exercise for a topic at beginner, intermediate, or advanced difficulty
+description: Generate a coding exercise for a topic at junior, mid, or senior difficulty
 ---
 The user wants a coding exercise about $ARGUMENTS.
 

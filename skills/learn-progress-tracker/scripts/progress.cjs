@@ -188,7 +188,7 @@ function main() {
   if (args.includes('--reset') && args[args.indexOf('--reset') + 1])
     return cmdReset(data, args[args.indexOf('--reset') + 1]);
 
-  console.log('Usage: progress.cjs [--list | --get <topic> | --add <topic> <phase> [metadata] [--flag=focus=laravel] [--flag=level=intermediate] | --summary | --reset <topic>]');
+  console.log('Usage: progress.cjs [--list | --get <topic> | --add <topic> <phase> [metadata] [--flag=focus=laravel] [--flag=level=mid] | --summary | --reset <topic>]');
 }
 
 main();

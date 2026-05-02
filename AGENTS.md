@@ -2,14 +2,14 @@
 
 ## Repo nature
 
-This is an AI agent **skill pack**, not an application. It contains 7 learning skills used by agents. There is no build, test, lint, or CI pipeline. There is an OpenCode specific installer script for OpenCode specific features.
+This is an AI agent **skill pack**, not an application. It contains 8 learning skills used by agents. There is no build, test, lint, or CI pipeline. There is an OpenCode specific installer script for OpenCode specific features.
 
 ## Directory map
 
 - `skills/<name>/SKILL.md` — skill definitions (one file per skill, loaded by agents skill tool)
 - `.opencode` — contains extras specific to OpenCode
 - `.opencode/commands/` — slash command definitions (`/learn`, `/practice`, `/quiz`) that load the orchestrator skill
-- `.opencode/opencode.json` — pre-approves the 7 skill names so they run without permission prompts
+- `.opencode/opencode.json` — pre-approves the 8 skill names so they run without permission prompts
 - `.opencode/install.sh` — symlinks skills into `~/.config/opencode/skills/` and commands into `~/.config/opencode/commands/`, then merges `opencode.json` into `~/.config/opencode/config.json`
 
 ## Skill structure conventions
@@ -25,4 +25,4 @@ Progress is stored externally at `~/.config/opencode/learning-progress.json`, no
 
 ## Installation
 
-Run `.opencode/install.sh` from the repo root. It expects `$REPO_DIR/skills/` to contain all 7 skill directories.
+Run `.opencode/install.sh` from the repo root. It expects `$REPO_DIR/skills/` to contain all 8 skill directories.

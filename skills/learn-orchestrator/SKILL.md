@@ -17,7 +17,7 @@ I manage the complete learning cycle. Instead of the user invoking each skill ma
    ```
 
 2. **If preferences don't exist** (first run, or the data file is empty), the script still returns defaults. BUT -- ask the user to set up their profile:
-   - Use the `question` tool to ask: **stack** (backend/frontend/fullstack), **focus** (laravel/react/vue/go/python/etc.), and **level** (beginner/intermediate/advanced).
+   - Use the `question` tool to ask: **stack** (backend/frontend/fullstack), **focus** (laravel/react/vue/go/python/etc.), and **level** (junior/mid/senior).
    - Write the answers via prefs.cjs `--set` commands.
 
    ```
@@ -25,7 +25,7 @@ I manage the complete learning cycle. Instead of the user invoking each skill ma
 
    What's your primary stack? [backend / frontend / fullstack]
    What framework/language are you most focused on? [e.g., laravel, react, vue, go, python]
-   What's your proficiency level? [beginner / intermediate / advanced]
+   What's your proficiency level? [junior / mid / senior]
    ```
 
 3. **Store the preferences** by running:
@@ -44,19 +44,19 @@ If the user says something like "teach me react state management" when their def
 1. Recognise the flag: `focus=react` (and potentially different `level` based on how they phrase it).
 2. Run the prefs script with `--flags` to get the merged config:
    ```bash
-   node ~/.config/opencode/skills/learn-preferences/scripts/prefs.cjs --flags focus=react level=advanced
+   node ~/.config/opencode/skills/learn-preferences/scripts/prefs.cjs --flags focus=react level=senior
    ```
 3. Use that merged config for the entire session. Do NOT persist it.
 4. When recording progress, pass these flags so progress records show the correct context:
    ```bash
-   node ~/.config/opencode/skills/learn-progress-tracker/scripts/progress.cjs --add "react-state-management" learn --flag=focus=react --flag=level=advanced
+   node ~/.config/opencode/skills/learn-progress-tracker/scripts/progress.cjs --add "react-state-management" learn --flag=focus=react --flag=level=senior
    ```
 
 ### Flag Parsing Heuristics
 
 Detect flag overrides from user input:
 - Mention of a different framework than their default → flag `focus`
-- "as a beginner", "I'm new to...", "at an advanced level" → flag `level`
+- "as a junior", "I'm new to...", "at a senior level" → flag `level`
 - "full stack perspective", "from a frontend angle" → flag `stack`
 
 When uncertain, ask: "I notice you mentioned React — your default focus is Laravel. Treat this as a React session?"
@@ -86,7 +86,7 @@ All phases use the preferences (or merged flags) to calibrate output.
 
 ## Phase 2: Practice
 
-1. Ask the user for **difficulty level** (beginner / intermediate / advanced) or use their saved level as default.
+1. Ask the user for **difficulty level** (junior / mid / senior) or use their saved level as default.
 2. Load the `learn-practice` skill.
 3. Provide it with the current preferences (stack, focus, level, difficulty).
 4. Follow its instructions to generate and present a coding exercise.

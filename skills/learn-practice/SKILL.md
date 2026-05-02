@@ -1,6 +1,6 @@
 ---
 name: learn-practice
-description: Generates coding exercises at Beginner, Intermediate, or Advanced difficulty that require applying a specific concept in a realistic scenario tailored to the user's stack and proficiency.
+description: Generates coding exercises at Junior, Mid, or Senior difficulty that require applying a specific concept in a realistic scenario tailored to the user's stack and proficiency.
 ---
 
 ## My Role
@@ -25,9 +25,9 @@ If I don't already know the topic and difficulty, ask:
 
 1. **What concept** are you practising? (e.g., "Eloquent relationships", "service container binding", "React hooks lifecycle", "goroutine channels")
 2. **What difficulty level?** (defaults to the user's `level` preference)
-   - **Beginner**: Concept recall. Implement the basic pattern correctly. Single file, single responsibility.
-   - **Intermediate**: Small bug fix or implementation. Requires combining the concept with other patterns. May involve 2-3 files.
-   - **Advanced**: Architectural problem or optimisation. Design decisions with tradeoffs. Multiple interacting components.
+   - **Junior**: Concept recall. Implement the basic pattern correctly. Single file, single responsibility.
+   - **Mid**: Small bug fix or implementation. Requires combining the concept with other patterns. May involve 2-3 files.
+   - **Senior**: Architectural problem or optimisation. Design decisions with tradeoffs. Multiple interacting components.
 
 ## Stack & Focus Calibration
 
@@ -92,9 +92,9 @@ End with: "Write your solution, then paste it back. I'll review it for correctne
 
 | Level | Scope | Files | Time Expectation |
 |-------|-------|-------|------------------|
-| Beginner | Single function or class | 1 file | 5-10 minutes |
-| Intermediate | Service + interface + test | 2-3 files | 15-30 minutes |
-| Advanced | Architecture with tradeoffs | 3-5 files | 30-60 minutes |
+| Junior | Single function or class | 1 file | 5-10 minutes |
+| Mid | Service + interface + test | 2-3 files | 15-30 minutes |
+| Senior | Architecture with tradeoffs | 3-5 files | 30-60 minutes |
 
 ## Don't
 

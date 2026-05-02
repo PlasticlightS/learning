@@ -33,9 +33,9 @@ If I don't already know the topic, ask:
 All code snippets, questions, and scenarios must be written in the user's stack/language. A React developer should never see PHP code snippets (unless their focus is "fullstack").
 
 Question complexity calibrates to level:
-- **beginner**: Test core concept recognition and basic application. Distractors are common beginner mistakes.
-- **intermediate**: Test nuanced understanding and edge case awareness. Distractors look plausible to a mid-level dev.
-- **advanced**: Test tradeoff analysis, performance implications, and architectural consequences. Distractors are approaches that "almost work" but fail in subtle ways.
+- **junior**: Test core concept recognition and basic application. Distractors are common junior mistakes.
+- **mid**: Test nuanced understanding and edge case awareness. Distractors look plausible to a mid-level dev.
+- **senior**: Test tradeoff analysis, performance implications, and architectural consequences. Distractors are approaches that "almost work" but fail in subtle ways.
 
 ## How I Test
 

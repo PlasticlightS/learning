@@ -26,7 +26,7 @@ node <skill-dir>/scripts/prefs.cjs [options]
 |-----|-------------|--------------|---------|
 | `stack` | Primary engineering domain | `backend`, `frontend`, `fullstack` | `backend` |
 | `focus` | Framework/language within that stack | `laravel`, `react`, `vue`, `go`, `python`, `rails`, `express`, etc. | `laravel` |
-| `level` | Proficiency | `beginner`, `intermediate`, `advanced` | `intermediate` |
+| `level` | Proficiency | `junior`, `mid`, `senior` | `mid` |
 
 ## Available Commands
 
@@ -41,7 +41,7 @@ Returns JSON:
 {
   "stack": "backend",
   "focus": "laravel",
-  "level": "intermediate"
+  "level": "mid"
 }
 ```
 
@@ -64,10 +64,10 @@ Prompts for confirmation. Clears all saved preferences back to defaults.
 ### Session Flags (temporary overrides)
 
 ```bash
-node scripts/prefs.cjs --flags stack=frontend focus=react level=advanced
+node scripts/prefs.cjs --flags stack=frontend focus=react level=senior
 ```
 
-Returns the merged config (flags take precedence over saved values). These flags do NOT persist -- they only affect the current invocation. Use this when the user says "teach me react as an advanced dev" without wanting to change their defaults.
+Returns the merged config (flags take precedence over saved values). These flags do NOT persist -- they only affect the current invocation. Use this when the user says "teach me react as a senior dev" without wanting to change their defaults.
 
 ## Data File
 
@@ -82,7 +82,7 @@ Preferences are stored at `~/.config/opencode/learning-preferences.json`. The sc
 
 **Calibration rules per skill:**
 
-- **learn-tutor**: Adjust assumed knowledge. A beginner gets more fundamentals; a frontend dev gets React/Vue examples instead of Laravel.
+- **learn-tutor**: Adjust assumed knowledge. A junior gets more fundamentals; a frontend dev gets React/Vue examples instead of Laravel.
 - **learn-practice**: Generate exercises in the user's stack. Difficulty maps from level. Constraints match stack conventions.
 - **learn-exam**: Design questions around the user's stack. Complexity matches level.
 - **learn-review**: Evaluate code against conventions of the user's stack. Severity thresholds adjust to level.

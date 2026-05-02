@@ -23,9 +23,9 @@ Use the returned `stack`, `focus`, and `level` to calibrate everything below.
 
 ### Audience Calibration by Level
 
-- **beginner**: Assume the user knows basic programming but may be new to the framework or concept. Explain fundamentals that are building blocks. Give simpler code examples. Explain terminology.
-- **intermediate**: The user knows their stack's core patterns (routing, ORM/models, basic architecture). Don't reteach fundamentals. Go deeper into "why this works this way."
-- **advanced**: The user is fluent. Skip all basics. Focus on internals, performance characteristics, edge cases, and architectural tradeoffs.
+- **junior**: Assume the user knows basic programming but may be new to the framework or concept. Explain fundamentals that are building blocks. Give simpler code examples. Explain terminology.
+- **mid**: The user knows their stack's core patterns (routing, ORM/models, basic architecture). Don't reteach fundamentals. Go deeper into "why this works this way."
+- **senior**: The user is fluent. Skip all basics. Focus on internals, performance characteristics, edge cases, and architectural tradeoffs.
 
 ### Audience Calibration by Stack & Focus
 
@@ -62,9 +62,9 @@ Cover the actual implementation details. The user chooses a depth level:
 - **Comparison (X vs Y)**: Contrast two related concepts. Highlight when to use each, tradeoffs, and a decision matrix.
 
 The depth choice can be inferred from `level`:
-- beginner → prefer Conceptual Overview
-- intermediate → offer the choice
-- advanced → default to Deep Dive or Comparison
+- junior → prefer Conceptual Overview
+- mid → offer the choice
+- senior → default to Deep Dive or Comparison
 
 ### 3. Show Real-World Use Cases
 
@@ -83,7 +83,7 @@ List common mistakes, anti-patterns, or outdated approaches:
 - Legacy patterns that look right but are now wrong
 - Edge cases that break the naive implementation
 
-Calibrate to level: beginners get basic gotchas, advanced users get subtle performance traps and architectural anti-patterns.
+Calibrate to level: juniors get basic gotchas, seniors get subtle performance traps and architectural anti-patterns.
 
 ### 5. Offer Next Steps
 

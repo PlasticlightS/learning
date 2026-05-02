@@ -41,8 +41,8 @@ node scripts/progress.cjs --list
 Returns array of topic summaries:
 ```json
 [
-  {"topic": "service-container-binding", "sessions": 3, "last_session": "2026-04-29", "phases_completed": ["learn", "practice", "review"], "focus": "laravel", "level": "intermediate"},
-  {"topic": "queue-job-batching", "sessions": 1, "last_session": "2026-04-28", "phases_completed": ["learn"], "focus": "laravel", "level": "intermediate"}
+  {"topic": "service-container-binding", "sessions": 3, "last_session": "2026-04-29", "phases_completed": ["learn", "practice", "review"], "focus": "laravel", "level": "mid"},
+  {"topic": "queue-job-batching", "sessions": 1, "last_session": "2026-04-28", "phases_completed": ["learn"], "focus": "laravel", "level": "mid"}
 ]
 ```
 
@@ -59,7 +59,7 @@ Returns full topic record or `null` if not found.
 ### Add Progress
 
 ```bash
-node scripts/progress.cjs --add "<topic>" "<phase>" [metadata] [--flag=focus=laravel] [--flag=level=intermediate]
+node scripts/progress.cjs --add "<topic>" "<phase>" [metadata] [--flag=focus=laravel] [--flag=level=mid]
 ```
 
 - `phase`: learn, practice, review, master
@@ -83,7 +83,7 @@ Returns:
   "average_mastery": 4.2,
   "recent_topics": [{"topic": "...", "last_session": "...", "phases": ["..."], "focus": "...", "level": "..."}],
   "focus_breakdown": {"laravel": 4, "react": 1},
-  "level_breakdown": {"intermediate": 3, "advanced": 2}
+  "level_breakdown": {"mid": 3, "senior": 2}
 }
 ```
 
@@ -108,12 +108,12 @@ Structure:
       "last_session": "2026-04-29",
       "sessions": 2,
       "phases_completed": ["learn", "practice"],
-      "max_difficulty_reached": "intermediate",
+       "max_difficulty_reached": "mid",
       "quiz_scores": [
         {"format": "multiple-choice", "score": "4/5", "date": "2026-04-29"}
       ],
       "focus": "laravel",
-      "level": "intermediate"
+       "level": "mid"
     }
   }
 }
@@ -126,7 +126,7 @@ Topics are slugified (lowercase, hyphens). The script handles this automatically
 When recording progress, pass the user's current preferences as flags so each topic record is tagged:
 
 ```bash
-node scripts/progress.cjs --add "service-container" learn --flag=focus=laravel --flag=level=intermediate
+node scripts/progress.cjs --add "service-container" learn --flag=focus=laravel --flag=level=mid
 ```
 
 This enables the summary to show focus/level breakdowns across all topics.

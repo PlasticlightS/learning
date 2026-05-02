@@ -38,9 +38,9 @@ If I'm missing any of these, ask for it.
 - Python: PEP 8, type hints where appropriate, context managers, async conventions
 
 **Level calibration**:
-- **beginner**: Focus on correctness and basic conventions. Be encouraging. Explain why conventions matter.
-- **intermediate**: Call out subtle issues: edge cases, testability, N+1 problems, coupling. Expect idiomatic code.
-- **advanced**: Be rigorous. Call out architectural choices, performance characteristics, extensibility. Expect production-quality code.
+- **junior**: Focus on correctness and basic conventions. Be encouraging. Explain why conventions matter.
+- **mid**: Call out subtle issues: edge cases, testability, N+1 problems, coupling. Expect idiomatic code.
+- **senior**: Be rigorous. Call out architectural choices, performance characteristics, extensibility. Expect production-quality code.
 
 ## How I Review
 
@@ -118,4 +118,4 @@ End with a brief summary table:
 - Assume good intent. They wrote the code to the best of their current ability.
 - Be specific. "Line 12 queries inside a loop" not "Your queries are inefficient."
 - Celebrate what's right. "Good use of dependency injection here" before listing problems.
-- Calibrate harshness to level: more forgiving for beginners, more exacting for advanced users.
+- Calibrate harshness to level: more forgiving for juniors, more exacting for seniors.

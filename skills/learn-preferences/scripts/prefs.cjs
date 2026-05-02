@@ -8,12 +8,12 @@ const DATA_PATH = path.join(os.homedir(), '.config', 'opencode', 'learning-prefe
 const DEFAULTS = {
   stack: 'backend',
   focus: 'laravel',
-  level: 'intermediate',
+  level: 'mid',
 };
 
 const VALID = {
   stack: ['backend', 'frontend', 'fullstack'],
-  level: ['beginner', 'intermediate', 'advanced'],
+  level: ['junior', 'mid', 'senior'],
 };
 
 function load() {
@@ -125,7 +125,7 @@ Commands:
 Preference keys:
   stack    backend | frontend | fullstack     (default: backend)
   focus    any framework/language slug         (default: laravel)
-  level    beginner | intermediate | advanced  (default: intermediate)`);
+  level    junior | mid | senior  (default: mid)`);
 }
 
 main();
